@@ -5,15 +5,19 @@ import {TaskStatus} from "../../../../common/enum/enums";
 import {ToDoList} from "./todolists/ToDoList";
 import {tasksType} from "../../../../state/tasks-reducer";
 import {selectTasks, selectToDoLists} from "../../../../state/appselector";
+import {DomainTodolist} from "../../../../state/todolists-reducer";
+import {setTodolistsAC} from "../../../../state/todolist-actions";
+import {setTasksAC} from "../../../../state/tasks-actions";
+import {DomainTask} from "../../../api/TasksTypes";
 
 export const ToDoLists = () => {
-    const tasks = useAppSelector(selectTasks);
-    const todolists = useAppSelector(selectToDoLists);
-
+    const tasks: tasksType = useAppSelector(selectTasks);
+    const todolists: DomainTodolist[] = useAppSelector(selectToDoLists);
     const dispatch = useAppDispatch();
 
+
     useEffect(() => {
-        // dispatch(fetchTodolistsThunk)
+        dispatch(setTodolistsAC(todolists))
     }, [])
 
 
@@ -27,6 +31,7 @@ export const ToDoLists = () => {
             default:
                 return tasks;
         }
+
     };
 
     return (

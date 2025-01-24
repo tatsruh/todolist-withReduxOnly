@@ -1,14 +1,20 @@
 import {DomainTask} from "../features/api/TasksTypes";
 import {addTaskAC, changeTaskAC, deleteTaskAC, setTasksAC} from "./tasks-actions";
 import {addToDoListType, removeActionType} from "./todolists-reducer";
+import {TaskPriority, TaskStatus} from "../common/enum/enums";
+import {v1} from "uuid";
 
 export type tasksType = {
     [key: string]: DomainTask[]
 }
 export type actionTasksType = deleteTaskActionType | addTaskActionType    | removeActionType
     | addToDoListType | setTasksActionType | changeTaskType;
+export const todolistID1 = v1()
+export const  todolistID2 = v1()
 
-const initState: tasksType = {}
+const initState: tasksType = {
+ [todolistID1]: [{id: v1(), title: 'dcde', status: TaskStatus.Completed, todoListId: todolistID1, priority: TaskPriority.Low, order: 1}]
+}
 
 export const tasksReducer = (state: tasksType = initState, action: actionTasksType): tasksType => {
     switch (action.type) {

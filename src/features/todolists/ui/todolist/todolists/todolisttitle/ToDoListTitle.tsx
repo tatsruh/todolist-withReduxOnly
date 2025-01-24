@@ -5,18 +5,19 @@ import React from "react";
 import {useAppDispatch} from "../../../../../../app/hooks/hooks";
 import {EditSpan} from "../../../../../../common/components/editSpan/EditSpan";
 import {DomainTodolist} from "../../../../../../state/todolists-reducer";
+import {removeToDoListAc} from "../../../../../../state/todolist-actions";
 
 type Props = {
     todolist: DomainTodolist;
 };
 
-export const TodolistTitle = ({ todolist }: Props) => {
-    const { title, id, entityStatus } = todolist;
+export const TodolistTitle = ({todolist}: Props) => {
+    const {title, id, entityStatus} = todolist;
 
     const dispatch = useAppDispatch();
 
     const removeTodolistHandler = () => {
-        // dispatch(deleteToDoListTC(id))
+        dispatch(removeToDoListAc(id))
     };
 
     const updateTodolistHandler = (title: string) => {
@@ -25,7 +26,7 @@ export const TodolistTitle = ({ todolist }: Props) => {
 
     return (
         <div className="todolist-title-container">
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} >
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                 <h3>
                     <EditSpan title={title} onChange={updateTodolistHandler}/>
                 </h3>

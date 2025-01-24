@@ -7,6 +7,7 @@ import {TaskStatus} from "../../../../../../common/enum/enums";
 import {EditSpan} from "../../../../../../common/components/editSpan/EditSpan";
 import {DomainTask} from "../../../../../api/TasksTypes";
 import {DomainTodolist} from "../../../../../../state/todolists-reducer";
+import {changeTaskAC, deleteTaskAC} from "../../../../../../state/tasks-actions";
 
 
 type TaskProps = {
@@ -19,7 +20,12 @@ export const Task: React.FC<TaskProps> = ({task, todolist}) => {
 
     const handleStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newStatus = e.currentTarget.checked ? TaskStatus.Completed : TaskStatus.New;
-        // dispatch(changeTaskTC({task, status: newStatus, title: task.title}));
+        dispatch(changeTaskAC({
+            taskId: task.id,
+            todoListId: todolist.id,
+            status: newStatus,
+            title: task.title
+        }))
     };
 
     const handleNameChange = (title: string) => {
@@ -27,7 +33,10 @@ export const Task: React.FC<TaskProps> = ({task, todolist}) => {
     };
 
     const handleTaskRemoval = () => {
-        // dispatch(deleteTaskTC({taskId: task.id, todoListId: todolist.id}));
+        dispatch(deleteTaskAC({
+            taskId: task.id,
+            todoListId: todolist.id
+        }))
     };
 
     return (

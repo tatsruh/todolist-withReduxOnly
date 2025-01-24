@@ -7,8 +7,12 @@ import {
     setTodolistsAC
 } from "./todolist-actions";
 import {ToDoListType} from "../features/api/ToDoListsTypes";
+import {todolistID1} from "./tasks-reducer";
+import {v1} from "uuid";
 
-const initState: DomainTodolist[] = [];
+const initState: DomainTodolist[] = [
+    {id: todolistID1, title: "dcdc", filter: 'all', entityStatus: "new", addedDate: '232', order: 1}
+];
 
 export type ToDoListActionTypes =
     SetTodolistsActionType
@@ -47,10 +51,7 @@ export const todolistReducer = (
             return state.filter(tl => tl.id !== action.todolistId);
 
         case actionTypes.ADD_TDL:
-            const newTDL: DomainTodolist = {
-                ...action.payload.todolist,
-                entityStatus: 'idle',
-            };
+            const newTDL = action.payload.todolist;
             return [...state, newTDL];
 
         case actionTypes.CHANGE_NAME_TDL:

@@ -9,16 +9,20 @@ import React from "react";
 import {LinearProgress, Switch} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../../app/hooks/hooks";
 import {MenuButton} from "../buttons/MenuButton";
+import {changeThemeAC} from "../../../state/theme-reducer";
+import {selectTheme} from "../../../state/appselector";
 
 export const Header = () => {
     // const themeMode = useAppSelector(selectTheme)
     // const status = useAppSelector(selectStatus)
 
     const dispatch = useAppDispatch()
+    const themeMode = useAppSelector(selectTheme)
 
-    // const changeModeHandler = () => {
-    //     dispatch(changeThemeAC(themeMode === 'light' ? 'dark' : 'light'))
-    // }
+
+    const changeModeHandler = () => {
+        dispatch(changeThemeAC(themeMode === 'light' ? 'dark' : 'light'))
+    }
 
     return (
         <AppBar position="static" sx={{ mb: '30px' }}>
@@ -39,7 +43,7 @@ export const Header = () => {
                 <MenuButton>Log In</MenuButton>
                 <MenuButton color="inherit">Log Out</MenuButton>
                 <MenuButton color="inherit">FAQ</MenuButton>
-                <Switch color={"default"} />
+                <Switch color={"default"} onClick={changeModeHandler} />
             </Toolbar>
             {/*{status === 'loading' &&  <LinearProgress /> }*/}
         </AppBar>

@@ -1,17 +1,29 @@
 
 import React from 'react';
 import {Container, Grid2} from "@mui/material";
-import {useAppDispatch} from "../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {Input} from "../../common/components/inputs/AddItemInput";
 import {ToDoLists} from "../../features/todolists/ui/todolist/ToDoLists";
+import {DomainTodolist} from "../../state/todolists-reducer";
+import {v1} from "uuid";
+import {addTodolistAC} from "../../state/todolist-actions";
+import {selectToDoLists} from "../../state/appselector";
 
 export const Main = () => {
 
     const dispatch = useAppDispatch();
+    const todolists = useAppSelector(selectToDoLists)
 
     const addToDoList = (title: string) => {
-        // dispatch(addToDoListTC(title))
-    }
+        const newTDL: DomainTodolist = {
+            title,
+            id: v1(),
+            order: todolists.length,
+            addedDate: '00-00-00',
+            filter: 'all',
+            entityStatus: 'new',
+        }
+    dispatch(addTodolistAC(newTDL))}
     return (
 
         <Container>

@@ -1,21 +1,25 @@
 import React from 'react';
 import './App.css';
-import {MenuButton} from "../common/components/buttons/MenuButton";
-import {Input} from "../common/components/inputs/AddItemInput";
+
 import {Header} from "../common/components/header/Header";
 import {EditSpan} from "../common/components/editSpan/EditSpan";
-import {CssBaseline} from "@mui/material";
+import {CssBaseline, ThemeProvider} from "@mui/material";
 import {Main} from "./main/Main";
+import {getTheme} from "../common/components/theme/theme";
+import {useSelector} from "react-redux";
+import {selectTheme} from "../state/appselector";
 
 function App() {
-  return (
+    const themeMode = useSelector(selectTheme);
+
+    return (
       <div>
-          {/*<ThemeProvider theme={getTheme(themeMode)}>*/}
+          <ThemeProvider theme={getTheme(themeMode)}>
               <CssBaseline/>
               <Header/>
               {/*<ErrorSnackbar/>*/}
               <Main/>
-          {/*</ThemeProvider>*/}
+          </ThemeProvider>
       </div>
   );
 }

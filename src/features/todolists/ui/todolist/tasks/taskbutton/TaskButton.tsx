@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Grid2} from "@mui/material";
 import {useAppDispatch} from "../../../../../../app/hooks/hooks";
 import {DomainTodolist} from "../../../../../../state/todolists-reducer";
+import {filterToDoListAC} from "../../../../../../state/todolist-actions";
 
 type Props = {
     todolist: DomainTodolist
@@ -12,7 +13,7 @@ const TasksButton = (props: Props) => {
 
 
     const filterButton = (filter: string, todolistID: string) => {
-        // dispatch(filterToDoListAC({todolistID, filter}));
+        dispatch(filterToDoListAC({todolistID, filter}));
     };
 
 
