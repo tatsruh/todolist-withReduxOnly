@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Grid2} from "@mui/material";
 import {useAppDispatch} from "../../../../../../app/hooks/hooks";
+import {DomainTodolist} from "../../../../../../state/todolists-reducer";
 
 type Props = {
     todolist: DomainTodolist
